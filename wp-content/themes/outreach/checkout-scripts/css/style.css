@@ -517,7 +517,7 @@ textarea.form-control{
   text-align: center;
   padding-top: 48px;
   color: #787878;
-  margin: 0 0 30px;
+  margin: 0 0 60px;
 }
 
 .invoice-pay input[type=radio].css-checkbox:checked + label.css-label {

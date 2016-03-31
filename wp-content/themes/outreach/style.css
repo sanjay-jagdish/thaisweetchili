@@ -202,7 +202,7 @@ body {
 	width: 100%;
 	position: fixed;
 	top: 0;
-	z-index: 9998;
+	z-index: 999999;
 	padding: 20px 0;
 	min-height: 110px;
 }
@@ -2775,7 +2775,7 @@ label.css-label {
   border-radius: 4px !important;
   text-transform: none !important;
   font-size: 20px !important;
-  color:#fff;
+  color:#fff !important;
 }
 .btn_check_out:hover{
 color:#fff;	
@@ -3711,7 +3711,7 @@ div.select-container{
 	border:none !important;
 }
 .weeknum{
-	color: #223A5E !important;
+	color: #000 !important;
 	font-size: 25px !important;
 	font-weight: 700;
 	line-height: 1.2;
@@ -3746,7 +3746,7 @@ div.select-container{
 	/*text-align: center;*/
 }
 .themenu-outer p, #text-lunchmeny p{
-	margin:0 !important;
+	/*margin:0 !important;*/
 	padding:0 !important;
 }
 .footerlm{
@@ -5937,7 +5937,7 @@ ul#wf-sort-id li input[type="submit"], ul#wf-sort-id li input[type="button"] { b
 		border-bottom-right-radius: 5px;
 	}
 	
-	#takeaway{
+	/*#takeaway{
 		right: 15px;
 		left: 15px;
 		top: 10px;
@@ -5947,7 +5947,7 @@ ul#wf-sort-id li input[type="submit"], ul#wf-sort-id li input[type="button"] { b
 		border: none;
 		background: none;
 		float: right;
-	}
+	}*/
 	
 	.toggle_cart{
 		background: url(images/cart.png) no-repeat center center !important;
@@ -5966,7 +5966,7 @@ ul#wf-sort-id li input[type="submit"], ul#wf-sort-id li input[type="button"] { b
 		margin-bottom: 5px;
 	}
 	
-	.toggle_cart span{
+	/*.toggle_cart span{
 		font-size: 11px;
 		background: #E5F6EA !important;
 		width: 22px !important;
@@ -5978,7 +5978,7 @@ ul#wf-sort-id li input[type="submit"], ul#wf-sort-id li input[type="button"] { b
 		position: absolute;
 		right: -5px !important;
 		top: -5px !important;
-   	}
+   	}*/
 	
 	#special_request{
 		top: 0;
@@ -6048,5 +6048,265 @@ ul#wf-sort-id li input[type="submit"], ul#wf-sort-id li input[type="button"] { b
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 	}
+	.toggle_cart, .toggle_cart_lunch{
+		background: url(images/cart.png) #000 no-repeat center center !important;
+    background-size: 30px !important;
+    border: none;
+    font-size: 0;
+    height: 40px;
+    width: 51px;
+    position: absolute;
+    top: -40px;
+    right: 0px;
+    padding: 4px 8px;
+    float: right;
+    margin-bottom: 5px;
+        border: 2px solid #fff;
+	}
+
+	#glt-translate-trigger{
+		    /* transform: scale(20); */
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(-90deg);
+	}
+	#glt-translate-trigger{
+	font-size: 12px;
+    right: -35px;
+    padding: 2px 15px;
+    bottom: 80px;
+	}
+	.toggle_cart, .toggle_cart_lunch{
+		background: url(images/cart.png) #000 no-repeat center center !important;
+    background-size: 30px !important;
+    border: none;
+    font-size: 0;
+    height: 40px;
+    width: 51px;
+    position: absolute;
+    top: -40px;
+    right: 0px;
+    padding: 4px 8px;
+    float: right;
+    margin-bottom: 5px;
+        border: 2px solid #fff;
+	}
+	#takeaway{
+		width: 250px;
+		right: 8%;
+	}
+	#takeaway-lunch {
+    right: 25%;
+    width: 235px;
+}
+	
+	.toggle_cart span,
+	.toggle_cart_lunch span{
+		font-size: 11px;
+		width: 22px !important;
+		height: 22px !important;
+		border-radius: 50px !important;
+		padding: 3.4px 0 0;
+		text-align: center;
+		position: absolute;
+		right: -5px !important;
+		top: -3px !important;
+   	}
+	
+	#special_request{
+		top: 0;
+		max-height:100%;
+		bottom: 0;
+	}
+	
+	.takeaway_cart_wrap,
+	.takeaway_lunch_cart_wrap{
+		border: none;
+		clear: both;
+	}
+	
+	.take_away_cart > h4,
+	.take_away_lunch_cart > h4{  padding: 0 0 0 0; text-align: left; color: #FFF; background: none;}
+	
+	/*.take_away_cart h4:before {
+		content: 'Kundvagn';
+		display: block;
+	}*/
+	
+	.specialbox{ max-height: none; margin-bottom: 5px; padding: 0; overflow: hidden; }
+	.specialbox table{ margin-bottom: 0;}
+	
+	.request-msg-row {
+		overflow: hidden;
+	}
+	
+	.specialbox th, 
+	.specialbox td{
+		display: block;
+		width: 100%;
+		padding: 10px 0;
+	}
+
   
+}
+#text-22 .textwidget p{
+	font-size: 18px;
+}
+#text-22 .textwidget h3{
+	text-align: center;
+	color: #000;
+}
+#text-22 .textwidget p:after{
+    display: block;
+    color: #CF0929;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+#takeaway-lunch{ right: 34%; }
+
+.takeaway_cart_wrap, .takeaway_lunch_cart_wrap{ display: none;}
+
+.toggle_cart,
+.toggle_cart_lunch {
+	border: #fff solid 3px;
+	border-bottom: none;
+	position: absolute;
+	right: -3px;
+	text-decoration: none !important;
+	color: #fff !important;
+	padding: 18px 10px 0;
+	top: -50px;
+	z-index: 999999999;
+	/* width: 90px; */
+	display: block !important;
+	/* height: 50px; */
+	outline: none !important;
+	background: #000 url(images/arr-to-top.png) no-repeat center 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+	font-size: 18px;
+}
+
+.take_away_cart,
+.take_away_lunch_cart {
+  padding: 10px 0;
+  background: #000;
+  background-size: 100% auto;
+  clear: both;
+  margin-right: 1px;
+  position: relative;
+}
+
+.take_away_cart h4,
+.take_away_lunch_cart h4 {
+	color: #fff;
+	text-align: center;
+	margin: 5px 0 5px;
+	padding-top: 50px;
+	background: url(images/cart.png) no-repeat center top;
+}
+
+.take_away_cart .cart_content,
+.take_away_lunch_cart .cart_content {
+	padding: 5px 10px;
+	overflow: auto;
+	margin-right: 5px;
+	max-height: 335px;
+}
+
+.take_away_cart table, .take_away_lunch_cart table {
+  margin-bottom: 0;
+}
+
+.take_away_cart tbody, .take_away_cart td,
+.take_away_lunch_cart tbody, .take_away_lunch_cart td {
+  border: transparent;
+  line-height: 1;
+}
+.lunch_cart_content{
+    padding: 5px 10px;
+    overflow: auto;
+    margin-right: 5px;
+    max-height: 335px;
+}
+
+@media only screen and (max-width: 768px){
+.site-title a.oi-link {
+    position: absolute;
+    left: 380px;
+    background-size: 50px;
+    height: 38px;
+    width: 50px;
+    margin: 0px;
+    top: 40px;
+}
+.TA_linkingWidgetWAR {
+    margin-left: 5px;
+    position: absolute;
+    left: 221px;
+    top: 5px;
+}
+}
+@media only screen and (max-width: 650px){
+.TA_linkingWidgetWAR {
+    margin-left: 5px;
+    position: absolute;
+    left: 8px;
+    top: 90px;
+    height: 72px;
+}
+.site-title a.oi-link {
+    position: absolute;
+    left: 190px;
+    background-size: auto;
+    height: 55px;
+    width: 74px;
+    margin: 0px;
+    top: 90px;
+}
+.takeaway_cart_dish_name, .takeaway_cart_dish_price, .lunch_cart_dish_name, .takeaway_cart_dish_price{
+	font-size: 13px;
+}
+.fader, #takeaway-fader{
+	display: none !important;
+}
+.close-mobile-cart{
+	display: none;
+}
+.toggle_cart, .toggle_cart_lunch {
+    background: #000 url("images/cart.png") no-repeat scroll center center / 30px auto !important;
+    border: 2px solid #fff;
+    float: right;
+    font-size: 0;
+    height: 40px;
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    position: absolute;
+    right: 0;
+    top: -40px;
+    width: 51px;
+}
+}
+.checkout-page-outer .container{
+	width: 100% !important;
+}
+.checkout-page-outer {
+    margin-top: 160px;
+}
+
+@media only screen and (max-width: 770px) {
+.checkout-page-outer {
+    margin-top: 0;
+}
+}
+.take_away_lunch_cart td{
+	color: #fff;
 }

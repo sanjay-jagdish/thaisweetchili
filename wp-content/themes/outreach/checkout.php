@@ -39,313 +39,314 @@ if( $current_user ) {
 	$userdata = $wpdb->get_row($query);
 }
 ?>
+<div class="checkout-page-outer">
+	<div class="container clearfix">
+		<div class="page-title">
+			<h3>Kassa</h3>
+		</div>
+		<div class="delvry-time-cont">
+			<div class="row">
+				<div class="col-sm-5">
+					<h4>1. VÄLJ TIDPUNKT OCH LEVERANSSÄTT</h4>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="delvry-apap"> 
+								<input type="hidden" name="chkuniqeid" value="<?php echo $chkqnkid; ?>" id="chkuniqeid" />
+	                            <input type="hidden" name="pluscheck" value="" id="pluscheck" /> 
+								<input type="radio" name="radiog_lite" id="radio1" class="css-checkbox" <?php echo $asapStatus?'checked':'disabled'; ?>/>	
+								<label for="radio1" class="css-label radGroup1">Snarast</label>
+								<input type="hidden" id="asap" name="asap" value="<?php echo $asapStatus?'1':'0'; ?>">
 
-<div class="container clearfix">
-	<div class="page-title">
-		<h3>Kassa</h3>
-	</div>
-	<div class="delvry-time-cont">
-		<div class="row">
-			<div class="col-sm-5">
-				<h4>1. VÄLJ TIDPUNKT OCH LEVERANSSÄTT</h4>
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="delvry-apap"> 
-							<input type="hidden" name="chkuniqeid" value="<?php echo $chkqnkid; ?>" id="chkuniqeid" />
-                            <input type="hidden" name="pluscheck" value="" id="pluscheck" /> 
-							<input type="radio" name="radiog_lite" id="radio1" class="css-checkbox" <?php echo $asapStatus?'checked':'disabled'; ?>/>	
-							<label for="radio1" class="css-label radGroup1">Snarast</label>
-							<input type="hidden" id="asap" name="asap" value="<?php echo $asapStatus?'1':'0'; ?>">
-
+							</div>
 						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="delvry-time">
-							<input type="radio" name="radiog_lite" id="radio2" class="css-checkbox" <?php echo $asapStatus?'':'checked'; ?>/>
-							<label for="radio2" class="css-label radGroup1">Annan tid</label>
-							<input type="hidden" id="order_time" name="order_time">
+						<div class="col-xs-6">
+							<div class="delvry-time">
+								<input type="radio" name="radiog_lite" id="radio2" class="css-checkbox" <?php echo $asapStatus?'':'checked'; ?>/>
+								<label for="radio2" class="css-label radGroup1">Annan tid</label>
+								<input type="hidden" id="order_time" name="order_time">
+							</div>
 						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="get-food">
-							<input type="radio" name="radiog_lite2" id="radio3" class="css-checkbox" checked disabled/>
-							<label for="radio3" class="css-label radGroup1">Jag hämtar maten</label>
+						<div class="col-xs-6">
+							<div class="get-food">
+								<input type="radio" name="radiog_lite2" id="radio3" class="css-checkbox" checked disabled/>
+								<label for="radio3" class="css-label radGroup1">Jag hämtar maten</label>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12" id='input_datetime_div' style="display:<?php echo $asapStatus?'none':'block'; ?>">
-				<div id="input_datetime"></div>
-				<div class='clearfix'></div>
-				<div class="row timepicker-outer">
-					<div class='col-xs-9'>
-						<div class="timepicker-cont">
-							<h6>Avhämtning erbjuds mellan:</h6>
-							<h6 id='range'></h6>
-							<div class="row">
-								<div class='col-xs-6'>
-									Tid: 
-								</div>
-								<div class='col-xs-6' id='orderTime'>
-									00:00
-								</div>
-							</div>
-							<div class="row">
-								<div class='col-xs-6'>
-									Timme: 
-								</div>
-								<div class='col-xs-6'>
-									<button type="button" id='subHour' class="qnty-btn pull-left times">-</button>
-									<button type="button" id='addHour' class="qnty-btn pull-left times">+</button>
-								</div>
-							</div>
-							<div class="row">
-								<div class='col-xs-6'>
-									Minut: 
-								</div>
-								<div class='col-xs-6'>
-									<button type="button" id='subMin' class="qnty-btn pull-left times">-</button>
-									<button type="button" id='addMin' class="qnty-btn pull-left times">+</button>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="col-sm-4 col-xs-12" id='input_datetime_div' style="display:<?php echo $asapStatus?'none':'block'; ?>">
+					<div id="input_datetime"></div>
 					<div class='clearfix'></div>
-					<div class='col-xs-9'>
-						
+					<div class="row timepicker-outer">
+						<div class='col-xs-9'>
+							<div class="timepicker-cont">
+								<h6>Avhämtning erbjuds mellan:</h6>
+								<h6 id='range'></h6>
+								<div class="row">
+									<div class='col-xs-6'>
+										Tid: 
+									</div>
+									<div class='col-xs-6' id='orderTime'>
+										00:00
+									</div>
+								</div>
+								<div class="row">
+									<div class='col-xs-6'>
+										Timme: 
+									</div>
+									<div class='col-xs-6'>
+										<button type="button" id='subHour' class="qnty-btn pull-left times">-</button>
+										<button type="button" id='addHour' class="qnty-btn pull-left times">+</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class='col-xs-6'>
+										Minut: 
+									</div>
+									<div class='col-xs-6'>
+										<button type="button" id='subMin' class="qnty-btn pull-left times">-</button>
+										<button type="button" id='addMin' class="qnty-btn pull-left times">+</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class='clearfix'></div>
+						<div class='col-xs-9'>
+							
+						</div>
 					</div>
 				</div>
+				<div class='clearfix'></div>
 			</div>
-			<div class='clearfix'></div>
 		</div>
-	</div>
-	<div class="oder-cont">
-		<div class="row">
-			<div class="col-sm-6">
-				<h4>2. DIN BESTÄLLNING</h4>
-				<div class="prod-cont">
-					<?php include 'ajax/cart.php'; ?>
+		<div class="oder-cont">
+			<div class="row">
+				<div class="col-sm-6">
+					<h4>2. DIN BESTÄLLNING</h4>
+					<div class="prod-cont">
+						<?php include 'ajax/cart.php'; ?>
+					</div>
 				</div>
-			</div>
-			<div class="col-sm-6 order-option">
-				
+				<div class="col-sm-6 order-option">
+					
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="your-info">
-		<div class="row">
-			<div class="col-sm-4">
-				<h4>3. DINA UPPGIFTER</h4>
-				<?php if( !$current_user->ID ){ ?>
-					<p id='notloggedin'><span class="create-account auth-login">Logga in</span> eller <span class="create-account auth-signup">Skapa ett konto</span></p>
-				<?php } ?>
-				
-				<div id='userdata' style="display:<?php echo $current_user->ID?'block':'none'?>">
-					<div class="form-group">
-						<label for="telefon">Telefon</label>
-						<input type="text" name="phone" class="form-control required" id="phone" required value="<?php echo $userdata->mobile_number; ?>">
+		<div class="your-info">
+			<div class="row">
+				<div class="col-sm-4">
+					<h4>3. DINA UPPGIFTER</h4>
+					<?php if( !$current_user->ID ){ ?>
+						<p id='notloggedin'><span class="create-account auth-login">Logga in</span> eller <span class="create-account auth-signup">Skapa ett konto</span></p>
+					<?php } ?>
+					
+					<div id='userdata' style="display:<?php echo $current_user->ID?'block':'none'?>">
+						<div class="form-group">
+							<label for="telefon">Telefon</label>
+							<input type="text" name="phone" class="form-control required" id="phone" required value="<?php echo $userdata->mobile_number; ?>">
+						</div>
+						<div class="form-group">
+							<label for="fullname">Name</label>
+							<input type="text" name="name" class="form-control required" id="fullname" required value="<?php echo $userdata->fname; ?>">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="fullname">Name</label>
-						<input type="text" name="name" class="form-control required" id="fullname" required value="<?php echo $userdata->fname; ?>">
+					
+					<p id='loggedin' style="display:<?php echo $current_user->ID? 'block': 'none';?>">
+						Welcome <span id='current_email'><?php echo $current_user->user_email; ?> </span> <a href="<?php echo wp_logout_url( site_url('checkout/?type='.$type) ); ?>">Logout?</a>
+					</p>
+
+					<!-- <form method="Post" id="login-form">
+						<div class="icon-field">
+							<input type="text" class="form-control" placeholder="E-Post" name="email" id="email" >
+							<i class="flaticon-back"></i>
+						</div>
+						<div class="icon-field">
+							<input type="password" class="form-control" placeholder="Losenord" name="pass" id="pass" >
+							<i class="flaticon-web"></i>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="chckbox-cont">
+									<input type="checkbox" name="checkboxG52" id="checkboxG52" class="css-checkbox" >
+									<label for="checkboxG52" class="css-label">Kom ihag mig</label>
+								</div>
+							</div>
+							<div class="col-md-6 text-right">
+								<p><span class="show-glomt">Glomt losenord</span></p>
+							</div>
+						</div>
+						<div class="chckbox-cont">
+							<input type="checkbox" name="checkboxG55" id="checkboxG55" class="css-checkbox" required>
+							<label for="checkboxG55" class="css-label">Jag har last och godkanner</label>
+							<a href="#policy" class="popup policy">anvandarvillkoren</a>
+						</div>
+						<div class="btn-cont">
+							<button type="button" class="btn btn-lg btn-red btn-full" id="login-button">LOGGA IN</button>
+						</div>
+					</form> -->
+				</div>
+
+				<div id="policy" style="display:none;">
+					<div class="popup-data">
+						<h3>Title here</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<h4>Lorem ipsum dolor</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<h4>Lorem ipsum dolor</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<h4>Lorem ipsum dolor</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<h4>Lorem ipsum dolor</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<h4>Lorem ipsum dolor</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore $asapStatusmagna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</div>
 				</div>
-				
-				<p id='loggedin' style="display:<?php echo $current_user->ID? 'block': 'none';?>">
-					Welcome <span id='current_email'><?php echo $current_user->user_email; ?> </span> <a href="<?php echo wp_logout_url( site_url('checkout/?type='.$type) ); ?>">Logout?</a>
-				</p>
 
-				<!-- <form method="Post" id="login-form">
-					<div class="icon-field">
-						<input type="text" class="form-control" placeholder="E-Post" name="email" id="email" >
-						<i class="flaticon-back"></i>
-					</div>
-					<div class="icon-field">
-						<input type="password" class="form-control" placeholder="Losenord" name="pass" id="pass" >
-						<i class="flaticon-web"></i>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="chckbox-cont">
-								<input type="checkbox" name="checkboxG52" id="checkboxG52" class="css-checkbox" >
-								<label for="checkboxG52" class="css-label">Kom ihag mig</label>
-							</div>
-						</div>
-						<div class="col-md-6 text-right">
-							<p><span class="show-glomt">Glomt losenord</span></p>
-						</div>
-					</div>
-					<div class="chckbox-cont">
-						<input type="checkbox" name="checkboxG55" id="checkboxG55" class="css-checkbox" required>
-						<label for="checkboxG55" class="css-label">Jag har last och godkanner</label>
-						<a href="#policy" class="popup policy">anvandarvillkoren</a>
-					</div>
-					<div class="btn-cont">
-						<button type="button" class="btn btn-lg btn-red btn-full" id="login-button">LOGGA IN</button>
-					</div>
-				</form> -->
-			</div>
-
-			<div id="policy" style="display:none;">
-				<div class="popup-data">
-					<h3>Title here</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<h4>Lorem ipsum dolor</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<h4>Lorem ipsum dolor</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<h4>Lorem ipsum dolor</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<h4>Lorem ipsum dolor</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<h4>Lorem ipsum dolor</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore $asapStatusmagna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-			</div>
-
-			<div class="col-md-8">
-				<div class="signup-form">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Fornamn">
-								<i class="flaticon-black"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Efternamn">
-								<i class="flaticon-black"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="E-post">
-								<i class="flaticon-back"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Mobilnummer">
-								<i class="flaticon-technology"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-					  <input type="text" class="form-control" placeholder="Gatuadress">
-								<i class="flaticon-internet"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Ort">
-								<i class="flaticon-map"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Postnummer">
-								<i class="flaticon-tool-1"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<select class="form-control">
-									<option value="Sweden">Sweden</option>
-								</select>
-								<i class="flaticon-web"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Lösenord">
-								<i class="flaticon-back"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Upprepa lösenord">
-								<i class="flaticon-back"></i>
-							</div>
-						</div>
-					</div>						
-				</div>
-				<div class="provide-emailid">
-					<div class="row">
-						<div class="col-md-6">
-							<h4>Uppge din e-postadress:</h4>
-							<form>
+				<div class="col-md-8">
+					<div class="signup-form">
+						<div class="row">
+							<div class="col-md-6">
 								<div class="icon-field">
-									<input type="text" class="form-control" placeholder="E-Post">
+									<input type="text" class="form-control" placeholder="Fornamn">
+									<i class="flaticon-black"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<input type="text" class="form-control" placeholder="Efternamn">
+									<i class="flaticon-black"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<input type="text" class="form-control" placeholder="E-post">
 									<i class="flaticon-back"></i>
 								</div>
-								<div class="btn-cont">
-									<button type="button" class="btn btn-lg btn-red btn-full" >LOGGA IN</button>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<input type="text" class="form-control" placeholder="Mobilnummer">
+									<i class="flaticon-technology"></i>
 								</div>
-							</form>	
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+						  <input type="text" class="form-control" placeholder="Gatuadress">
+									<i class="flaticon-internet"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<input type="text" class="form-control" placeholder="Ort">
+									<i class="flaticon-map"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<input type="text" class="form-control" placeholder="Postnummer">
+									<i class="flaticon-tool-1"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<select class="form-control">
+										<option value="Sweden">Sweden</option>
+									</select>
+									<i class="flaticon-web"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<input type="text" class="form-control" placeholder="Lösenord">
+									<i class="flaticon-back"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="icon-field">
+									<input type="text" class="form-control" placeholder="Upprepa lösenord">
+									<i class="flaticon-back"></i>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="provide-emailid">
+						<div class="row">
+							<div class="col-md-6">
+								<h4>Uppge din e-postadress:</h4>
+								<form>
+									<div class="icon-field">
+										<input type="text" class="form-control" placeholder="E-Post">
+										<i class="flaticon-back"></i>
+									</div>
+									<div class="btn-cont">
+										<button type="button" class="btn btn-lg btn-red btn-full" >LOGGA IN</button>
+									</div>
+								</form>	
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="valj-betalsatt">
-		<h4>4. VÄLJ BETALSÄTT</h4>
-		<div class="row">
-			<div class="col-md-7">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="online-pay">
-							<input type="radio" name="radiopay_lite" id="radiop1" class="css-checkbox pay-option" checked="checked" value="online" />
-							<label for="radiop1" class="css-label radGroup1">Betala online</label>
+		<div class="valj-betalsatt">
+			<h4>4. VÄLJ BETALSÄTT</h4>
+			<div class="row">
+				<div class="col-md-7">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="online-pay">
+								<input type="radio" name="radiopay_lite" id="radiop1" class="css-checkbox pay-option" checked="checked" value="online" />
+								<label for="radiop1" class="css-label radGroup1">Betala online</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="cash-pay">
+								<input type="radio" name="radiopay_lite" id="radiop2" class="css-checkbox pay-option" value="cash" checked/>
+								<label for="radiop2" class="css-label radGroup1">Betalas vid avhämtning</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="invoice-pay">
+								<input type="radio" name="radiopay_lite" id="radiop3" class="css-checkbox pay-option invoice-form-show" value="company" />
+								<label for="radiop3" class="css-label radGroup1">Faktura (endast företag)</label>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="cash-pay">
-							<input type="radio" name="radiopay_lite" id="radiop2" class="css-checkbox pay-option" value="cash" checked/>
-							<label for="radiop2" class="css-label radGroup1">Betalas vid avhämtning</label>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="invoice-pay">
-							<input type="radio" name="radiopay_lite" id="radiop3" class="css-checkbox pay-option invoice-form-show" value="company" />
-							<label for="radiop3" class="css-label radGroup1">Faktura (endast företag)</label>
+					<div class="row">
+						<div class="col-md-7">
+							<button type="button" class="btn btn-lg btn-red btn-full" id="main-checkout">BESTÄLL</button>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-7">
-						<button type="button" class="btn btn-lg btn-red btn-full" id="main-checkout">BESTÄLL</button>
+				<div class="col-md-4 col-md-offset-1">
+					<div class="invoice-form">
+						<div class="icon-field">
+							<input type="text" class="form-control" placeholder="Företag">
+							<i class="flaticon-social"></i>
+						</div>
+						<div class="icon-field">
+							<input type="text" class="form-control" placeholder="Org.nr.">
+							<i class="flaticon-social-1"></i>
+						</div>
+						<div class="icon-field">
+							<input type="text" class="form-control" placeholder="Adress">
+							<i class="flaticon-internet"></i>
+						</div>
+						<div class="icon-field">
+							<input type="text" class="form-control" placeholder="Post.nr/Ort">
+							<i class="flaticon-tool-1"></i>
+						</div>
+						<div class="icon-field">
+							<input type="text" class="form-control" placeholder="Ref/Idnummer">
+							<i class="flaticon-black"></i>
+						</div>
+						<input type="hidden" id="email" >
+						<input type="hidden" id="pass" >
+						<input type="hidden" id="paymenttype" value="cash">
 					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-md-offset-1">
-				<div class="invoice-form">
-					<div class="icon-field">
-						<input type="text" class="form-control" placeholder="Företag">
-						<i class="flaticon-social"></i>
-					</div>
-					<div class="icon-field">
-						<input type="text" class="form-control" placeholder="Org.nr.">
-						<i class="flaticon-social-1"></i>
-					</div>
-					<div class="icon-field">
-						<input type="text" class="form-control" placeholder="Adress">
-						<i class="flaticon-internet"></i>
-					</div>
-					<div class="icon-field">
-						<input type="text" class="form-control" placeholder="Post.nr/Ort">
-						<i class="flaticon-tool-1"></i>
-					</div>
-					<div class="icon-field">
-						<input type="text" class="form-control" placeholder="Ref/Idnummer">
-						<i class="flaticon-black"></i>
-					</div>
-					<input type="hidden" id="email" >
-					<input type="hidden" id="pass" >
-					<input type="hidden" id="paymenttype" value="cash">
 				</div>
 			</div>
 		</div>

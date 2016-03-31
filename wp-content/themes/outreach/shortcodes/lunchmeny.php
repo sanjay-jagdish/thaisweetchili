@@ -251,7 +251,7 @@ function lunchmeny(){
 					?>
                         <div class="themenu-inner">
                         <div class="left-pos">
-                            <h3><?php echo $courses_res['name']; ?></h3>
+                            <h3><?php echo strip_tags($courses_res['name']); ?></h3>
                             <p class="testp<?php echo $counts; ?>">
 							<?php 
 								//get menu price
@@ -449,7 +449,7 @@ function lunchmeny(){
 					?>
                         <div class="themenu-inner">
                         <div class="left-pos">
-                            <h3><?php echo $courses_res['name']; ?></h3>
+                            <h3><?php echo strip_tags($courses_res['name']); ?></h3>
                             <p class="testp<?php echo $counts; ?>">
 							<?php 
 								//get menu price
