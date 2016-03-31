@@ -1,0 +1,9 @@
+[16-Sep-2015 03:15:31 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/capabilities.php on line 3
+[16-Sep-2015 03:15:32 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/controller.php on line 3
+[16-Sep-2015 03:15:34 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/mail.php on line 289
+[16-Sep-2015 03:15:36 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/upgrade.php on line 3
+[16-Sep-2015 03:17:22 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/capabilities.php on line 3
+[16-Sep-2015 03:50:54 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/capabilities.php on line 3
+[16-Sep-2015 03:50:55 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/capabilities.php on line 3
+[16-Sep-2015 03:50:55 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/capabilities.php on line 3
+[16-Sep-2015 03:50:56 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-content/plugins/contact-form-7/includes/capabilities.php on line 3

@@ -1,0 +1,46 @@
+[16-Sep-2015 03:15:40 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/admin-bar.php on line 48
+[16-Sep-2015 03:15:41 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/author-template.php on line 454
+[16-Sep-2015 03:15:42 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/canonical.php on line 556
+[16-Sep-2015 03:15:43 America/New_York] PHP Fatal error:  Class 'Walker' not found in /home/tschili/public_html/wp-includes/category-template.php on line 891
+[16-Sep-2015 03:15:44 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/tschili/public_html/wp-includes/class-feed.php on line 4
+[16-Sep-2015 03:15:46 America/New_York] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/SimplePie/Misc.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/tschili/public_html/wp-includes/class-simplepie.php on line 5
+[16-Sep-2015 03:15:47 America/New_York] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/tschili/public_html/wp-includes/class-snoopy.php on line 6
+[16-Sep-2015 03:15:49 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-includes/class-wp-embed.php on line 26
+[16-Sep-2015 03:15:50 America/New_York] PHP Fatal error:  Class 'IXR_Client' not found in /home/tschili/public_html/wp-includes/class-wp-http-ixr-client.php on line 9
+[16-Sep-2015 03:15:50 America/New_York] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home/tschili/public_html/wp-includes/class-wp-image-editor-gd.php on line 17
+[16-Sep-2015 03:15:50 America/New_York] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home/tschili/public_html/wp-includes/class-wp-image-editor-imagick.php on line 17
+[16-Sep-2015 03:15:51 America/New_York] PHP Fatal error:  Class 'IXR_Server' not found in /home/tschili/public_html/wp-includes/class-wp-xmlrpc-server.php on line 23
+[16-Sep-2015 03:15:52 America/New_York] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/tschili/public_html/wp-includes/class.wp-scripts.php on line 19
+[16-Sep-2015 03:15:53 America/New_York] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/tschili/public_html/wp-includes/class.wp-styles.php on line 19
+[16-Sep-2015 03:15:53 America/New_York] PHP Fatal error:  Class 'Walker' not found in /home/tschili/public_html/wp-includes/comment-template.php on line 1648
+[16-Sep-2015 03:15:55 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-includes/default-filters.php on line 17
+[16-Sep-2015 03:15:55 America/New_York] PHP Fatal error:  Class 'WP_Widget' not found in /home/tschili/public_html/wp-includes/default-widgets.php on line 14
+[16-Sep-2015 03:15:56 America/New_York] PHP Fatal error:  Call to undefined function feed_content_type() in /home/tschili/public_html/wp-includes/feed-atom-comments.php on line 8
+[16-Sep-2015 03:15:56 America/New_York] PHP Fatal error:  Call to undefined function feed_content_type() in /home/tschili/public_html/wp-includes/feed-atom.php on line 8
+[16-Sep-2015 03:15:56 America/New_York] PHP Fatal error:  Call to undefined function feed_content_type() in /home/tschili/public_html/wp-includes/feed-rdf.php on line 8
+[16-Sep-2015 03:15:57 America/New_York] PHP Fatal error:  Call to undefined function feed_content_type() in /home/tschili/public_html/wp-includes/feed-rss.php on line 8
+[16-Sep-2015 03:15:57 America/New_York] PHP Fatal error:  Call to undefined function feed_content_type() in /home/tschili/public_html/wp-includes/feed-rss2-comments.php on line 8
+[16-Sep-2015 03:15:57 America/New_York] PHP Fatal error:  Call to undefined function feed_content_type() in /home/tschili/public_html/wp-includes/feed-rss2.php on line 8
+[16-Sep-2015 03:15:59 America/New_York] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/tschili/public_html/wp-includes/functions.php on line 8
+[16-Sep-2015 03:16:01 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/general-template.php on line 1760
+[16-Sep-2015 03:16:02 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/kses.php on line 1647
+[16-Sep-2015 03:16:04 America/New_York] PHP Fatal error:  Call to undefined function add_shortcode() in /home/tschili/public_html/wp-includes/media.php on line 781
+[16-Sep-2015 03:16:05 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/ms-default-constants.php on line 153
+[16-Sep-2015 03:16:05 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-includes/ms-default-filters.php on line 17
+[16-Sep-2015 03:16:06 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/ms-functions.php on line 2031
+[16-Sep-2015 03:16:07 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/ms-load.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/tschili/public_html/wp-includes/ms-settings.php on line 14
+[16-Sep-2015 03:16:07 America/New_York] PHP Fatal error:  Class 'Walker' not found in /home/tschili/public_html/wp-includes/nav-menu-template.php on line 16
+[16-Sep-2015 03:16:10 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-includes/post-formats.php on line 164
+[16-Sep-2015 03:16:10 America/New_York] PHP Fatal error:  Class 'Walker' not found in /home/tschili/public_html/wp-includes/post-template.php on line 1241
+[16-Sep-2015 03:16:11 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/post.php on line 167
+[16-Sep-2015 03:16:12 America/New_York] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/tschili/public_html/wp-includes/registration-functions.php on line 7
+[16-Sep-2015 03:16:12 America/New_York] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/tschili/public_html/wp-includes/registration.php on line 7
+[16-Sep-2015 03:16:13 America/New_York] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/tschili/public_html/wp-includes/rss-functions.php on line 8
+[16-Sep-2015 03:16:13 America/New_York] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/tschili/public_html/wp-includes/rss.php on line 19
+[16-Sep-2015 03:16:14 America/New_York] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/tschili/public_html/wp-includes/script-loader.php on line 25
+[16-Sep-2015 03:16:14 America/New_York] PHP Fatal error:  Call to undefined function add_filter() in /home/tschili/public_html/wp-includes/shortcodes.php on line 556
+[16-Sep-2015 03:16:15 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/taxonomy.php on line 130
+[16-Sep-2015 03:16:15 America/New_York] PHP Fatal error:  Call to undefined function is_robots() in /home/tschili/public_html/wp-includes/template-loader.php on line 28
+[16-Sep-2015 03:16:16 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/tschili/public_html/wp-includes/theme.php on line 676
+[16-Sep-2015 03:16:17 America/New_York] PHP Fatal error:  Call to undefined function is_main_site() in /home/tschili/public_html/wp-includes/update.php on line 667
+[16-Sep-2015 03:16:17 America/New_York] PHP Fatal error:  Call to undefined function is_admin() in /home/tschili/public_html/wp-includes/vars.php on line 23
