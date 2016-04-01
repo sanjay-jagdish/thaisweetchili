@@ -646,15 +646,29 @@
                 
 				<?php } ?>	
 			<?php
+			$qe=mysql_query("select var_value from settings where var_name='copy_email'") or die(mysql_error());
+			$re=mysql_fetch_assoc($qe);
 			
 			
-			$to = 'ekonomi.limone@hotmail.se';
-			//$to = 'notifications@limoneristorante.se';
+			//$to = 'david.rasti@gmail.com';
+			
+			$to = 'thaisweetchili.test@gmail.com';
+			
+			
+			if($re['var_value']!=''){
+				$to = $re['var_value'];
+			}
+			
+			//get copy name
+			$qn=mysql_query("select var_value from settings where var_name='copy_name'") or die(mysql_error());
+			$rn=mysql_fetch_assoc($qn);
 				
 			$name='Stefano Basagni';
-						
-			$subject = 'Ny beställning';
 			
+			if($rn['var_value']!=''){
+				$name=$rn['var_value'];
+			}
+			$subject = 'Ny beställning';
 			
 			 $mail = new PHPMailer();
 			 $mail->CharSet = 'UTF-8';

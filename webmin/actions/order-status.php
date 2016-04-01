@@ -99,9 +99,10 @@
 						Din beställning har avbokats. Hör av dig till oss om du har några frågor. <br>
 						Din order togs emot av: ".getNameofSignee($id)."<br><br>
 						 
-						Ristorante Limone Italiano<br />
-						Stora gatan 4<br />
-						021-417560<br />
+						Thai Sweet Chili<br />
+						Ulvsundavägen 176<br>
+					    168 67 Bromma<br>
+					    08 - 28 38 39
 					</div>
 				</body>
 			</html>
@@ -602,7 +603,7 @@
 					<div style='font-size:16px;'>".$themsg."
 						<br><br>
 						 
-						<strong>Välkommen till Limone Ristorante Italiano!</strong><br><br>
+						<strong>Välkomna till Thai Sweet Chili!</strong><br><br>
 		   
 					    Stora gatan 4<br>
 					    021-417560
