@@ -19,7 +19,7 @@
 		$q=mysql_query("select description from menu where id='".$id."'");
 		$r=mysql_fetch_assoc($q);
 		
-		return strip_tags($r['description']);
+		return $r['description'];
 	}
 	
 	function checkUpdates($id,$menuid){
@@ -60,7 +60,9 @@
             while($r=mysql_fetch_assoc($q)){
 				
 				//for the mandatory tillvals
-				$qtill = mysql_query("select id from menu_option_details where menu_id='".$r['menu_id']."' and single_option=1") or die(mysql_error());
+
+
+				$qtill = mysql_query("Select id from menu_option_details where menu_id = ".$r['menu_id']) or die(mysql_error());
 				$count_tillvals = mysql_num_rows($qtill);
 				//end tillvals
 				

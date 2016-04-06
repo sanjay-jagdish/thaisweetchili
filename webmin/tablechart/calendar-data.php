@@ -1,8 +1,9 @@
-                                                                <div id="calendar-wrapper">
+<div id="calendar-wrapper">
 <?php
 require('../config/config.php');
 ini_set('display_errors',0);
-
+$max_table='';
+$days_disabled='';
 $time_block_left_padding = 2;// pixels
 $time_interval_width = 24; // 48 pixels; width of <td>  
 
@@ -631,11 +632,13 @@ $(function(){
 		  var array = [<?php echo $days_disabled; ?>]; //'02/22/2014','02/23/2014','02/28/2014'
 		  
 		  jQuery( "#chartdate" ).datepicker({
-			  minDate: 0, 
+			  minDate: 0,
+
 			  firstDay: '<?php echo $row['var_value']; ?>',
 				<?php
 				if($_GET['date']!=''){
 				$sel_date = explode('-',$_GET['date']);
+
 				?>
 				defaultDate: new Date(<?php echo $sel_date[0].','.(int)($sel_date[1]-1).','.$sel_date[2]; ?>),
 				<?php	  

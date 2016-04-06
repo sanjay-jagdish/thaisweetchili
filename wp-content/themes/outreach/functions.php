@@ -556,23 +556,6 @@ $(function() {
 	 //var array = ['02/14/2014','02/15/2014'];
 	 var array = [<?php echo $disabledDates; ?>];
 	 var thedays = [<?php echo $thedays; ?>]; 
-    
-      /*$( "#datepicker" ).datepicker({
-	  	  minDate: 0, 
-		  maxDate : '<?php //echo (strtotime($theend_date) - strtotime($currentDate)) / (60 * 60 * 24); ?>',
-		  firstDay: <?php //echo $row['var_value']; ?>,
-		  onSelect: function(selectedDate){
-			  $('.restime').val('');
-		  },
-		  beforeShowDay: function(date){
-				var string = $.datepicker.formatDate('mm/dd/yy', date);
-				
-				return [checktheDay(date,thedays,string,array)];
-			
-				
-		 }
-	   });*/
-	   
 	   
 	  
      $('a.time-close').click(function(){
@@ -820,42 +803,6 @@ $(function() {
 			}
 	 });
 	 
-	 
-	 // $.ajax({
-		// url: "<?php //echo CHILD_URL ?>/steps.php",
-		// type: 'POST',
-		// success: function(value){
-		 
-		//    $('#takeaway_form').html(value);
-		
-		// }
-	 // }); 
-	 
-	 /*$('.existing').click(function(){
-		var val=$(this).prop('checked');
-		
-		$('.hidesecond').hide();
-		
-		if(val){
-			$('.hidefirst').fadeIn();
-			$('.createaccount-btn').hide();
-		}
-		else{
-			$('.hidefirst').hide();
-			$('.createaccount-btn').fadeIn();
-		}
-		
-	 });
-	 
-	 $('.newuser').click(function(){
-		 
-		var val=$(this).prop('checked');
-		
-		$('.hidefirst').hide();
-		
-	 });*/
-	 
-	 
 	 $('#menu-item-26 a').click(function(){
 		 $('#takeaway_form').hide();
 	 	 $('#reservation_form').fadeIn();
@@ -866,18 +813,7 @@ $(function() {
 		 
 		 $(this).addClass('li-active');
 	 });
-	 
-	 $('#menu-item-27 a').click(function(){
-		 // $('#reservation_form').hide();
-		 // $('#takeaway_form').fadeIn();
-		 // $('#book_button, #take_away').removeClass('the-active');
-		 // $('#take_away').addClass('the-active');
-		 
-		 // $('#menu-primary_menu li a').removeClass('li-active');
-		 
-		 // $(this).addClass('li-active');
-	 });
-	 
+
 	 
 	 $('.agreelabel').click(function(){
 		 
@@ -887,53 +823,6 @@ $(function() {
 			 
 	
 	 });
-	 
-	 
-	 /*$('.forgot').click(function(){
-	    $('.forgot-box').removeClass('errormsg').html();   
-	 	$('.fade, .forgot-box').fadeIn();
-		gotoModal();
-	 
-	 });
-	 
-	 $('.forgot-box .btn').click(function(){
-	 	var email=$('.forgotemail').val();
-		
-		$('.forgot-box .displaymsg').fadeOut();
-		
-		if(email!=''){
-			
-			if(validateEmail(email)){
-				
-				$('.forgot-box .displaymsg').fadeIn().html('<img src="<?php //echo CHILD_URL; ?>/images/rectangular.gif" style="margin:0 auto;">').removeClass('errormsg');
-				
-				$.ajax({
-					url: "<?php //echo CHILD_URL ?>/forgot-password.php",
-					type: 'POST',
-					data: 'email='+encodeURIComponent(email),
-					success: function(value){
-					 	if(value!='not'){
-					   		$('.forgot-box .displaymsg').fadeIn().removeClass('errormsg').addClass('successmsg').html('Ditt lösenord har nu skickats - kontrollera din inkorg.');	
-						}
-						else{
-							$('.forgot-box .displaymsg').fadeIn().addClass('errormsg').html('E inte erkänns.');
-						}
-					}
-				 }); 
-				
-				
-			}
-			else{
-				$('.forgot-box .displaymsg').fadeIn().addClass('errormsg').html('Den angivna e-postadressen är inte registrerad.');		
-			}
-			
-		}
-		else{
-			$('.forgot-box .displaymsg').fadeIn().addClass('errormsg').html('E-postadress krävs.');	
-		}
-		
-	 });*/
-	 
 	 
 	 if ($(window).width() < 1024) {
 	   $('#menu-primary_menu a').click(function(){
@@ -947,11 +836,6 @@ $(function() {
 	
  
   });
-  
-	
-	
-	
-  
 </script>
 <script type="text/javascript" src="<?php echo CHILD_URL ?>/scripts/numeric.js"></script>
 <script type="text/javascript">
@@ -1089,18 +973,11 @@ function menus($atts){
 		$ttype = 3;
 	}
 
-	
-	/*$qs=mysql_query("select var_value from settings where var_name='takeaway_content'");
-	$rs=mysql_fetch_assoc($qs);
-	
-	echo $rs['var_value'];*/
-
 ?>
 <div style="overflow:hidden; padding-top:30px;">
 <!--START-->
 <?php	
 if($ttype == 2){
-	//GET CATEGORIESdata-id="'.$row['id'].'" data-rel="'.$row['name'].'<span>'.$row['description'].'</span>'.'" data-tillval="'.$count_tillvals.'"
 	$qry1 = "Select * from $cattable where deleted = '0' and id = '1' order by length(`order`), `order` asc";
 	$res1 = mysql_query($qry1) or die("Error " . mysql_error());
 	$row1 = mysql_fetch_assoc($res1);
@@ -1185,8 +1062,6 @@ if($ttype == 2){
 					$cnt1++;	
 				}
 	//END GET MENUS UNDER MAIN CATEGORY	
-	
-	
 	
 	//GET SUB CATEGORIES
 	$qry3 = "Select *, if(`order`='','A',`order`) as theorder from $subcattable where (category_id = '". $cat_id ."' and deleted = '0') order by length(theorder) asc, theorder asc";
@@ -1787,24 +1662,6 @@ function script_catering(){
 						$('.clickcatering').attr('data-title',jQuery.cookie('uniqueid'));	
 						$('.pay').attr('data-title',jQuery.cookie('takeaway_id'));
 						
-						
-					 
-						$('.clickcatering').click(function(){
-							//DISABLE CATERING
-							
-							//var val = Number($(this).attr('data-rel'));
-							
-							//if(val==0){
-							//	$(this).attr('data-rel', '1');
-							//	$('.catering-detail2').fadeIn();
-							//}
-							//else{
-							//	$(this).attr('data-rel', '0');
-							//	$('.catering-detail2').fadeOut();
-							//}
-							
-							
-						}); 
 	
 						$('.addme').click(function(){
 							var theclass = $(this).attr('data-rel');
@@ -2241,11 +2098,6 @@ function script_catering(){
 										}
 								});	
 							}
-							/*else{
-								$('.fade, .cart-detail').fadeIn();
-								$('.takeawaycart-detail').html('<div class="tacart-inner"><a href="javascript:void(0)" class="close-cart" onclick="closetheCart()">Close</a><div class="clear"></div><span class="emptycart">You have an empty cart.</span></div>').center();
-							}*/
-								
 						});
 						
 						
@@ -2301,11 +2153,6 @@ function script_catering(){
 										}
 								});	
 							}
-							/*else{
-								$('.fade, .cart-detail').fadeIn();
-								$('.takeawaycart-detail').html('<div class="tacart-inner"><a href="javascript:void(0)" 1class="close-cart" onclick="closetheCart()">Close</a><div class="clear"></div><span class="emptycart">You have an empty cart.</span></div>').center();
-							}*/
-								
 						});
 						
 						
@@ -2358,10 +2205,6 @@ function script_catering(){
 								
 								var siteurl = $('.takeaway_cart_wrap').attr('data-rel');
 								
-								//added by Karbhe
-								//var isMobile = (/android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
-								//if(isMobile){ quan = 1; }
-								
 								var check = getPanic();
 								
 								if(check==1){
@@ -2388,80 +2231,76 @@ function script_catering(){
 											}
 									});
 																								
-									if(check==0){
-										
-											//save orders
-											$.ajax({
-													url: "<?php echo CHILD_URL; ?>/takeaway-orders.php",
-													type: 'POST',
-													async:false,
-													data: 'uniq='+encodeURIComponent(uniq)+'&menu_id='+encodeURIComponent(menuid)+'&quan='+encodeURIComponent(quan)+'&price='+encodeURIComponent(price)+'&tillval_count='+tillval_count,
-													success: function(value){
-														var resid = value;
-														if(tillval_count>0){
-											
-															$('.special_request_content').html('<center><img src="'+siteurl+'/images/loader.gif'+'"></center>');
-															$.ajax({
-																url: "<?php echo CHILD_URL; ?>/special-request.php",
-																type: 'POST',
-																async:false,
-																data: 'id='+encodeURIComponent(resid)+'&menu_det='+encodeURIComponent(menu_det)+'&siteurl='+encodeURIComponent('<?php echo CHILD_URL; ?>')+'&temp_tillval=1&price='+encodeURIComponent(price)+'&check=second',
-																success: function(value){
-																	$('.special_request_content').html(value);
-																}
-															});
-															
-															$('.fader, #special_request').fadeIn();
-															
-															$('#btn_skip').click(function(){
-																//for the cart
-																getcountItem(0);
-															});	 
-														
-														}
-														else{
-														   
-															$('#takeaway .cart_content').html('<center><img src="'+siteurl+'/images/loader.gif'+'"></center>');
-															$('#takeaway .cart_content').load("<?php echo CHILD_URL.'/takeaway-cart.php';?>");
-															
-															//for the cart
-															getcountItem(0);
-															
-														}
-														
-														
-													}
-											});
-											
-											//end save orders
-										
-										
-									
-									}
-									else{
-										
-										//for no settings
-										
-										$.fn.center = function ()
-										{
-											this.css("position","fixed");
-											this.css("top", (($(window).height() / 2) - (this.outerHeight() / 2))+50);
-											return this;
+			if(check==0){
+				
+					//save orders
+					$.ajax({
+							url: "<?php echo CHILD_URL; ?>/takeaway-orders.php",
+							type: 'POST',
+							async:false,
+							data: 'uniq='+encodeURIComponent(uniq)+'&menu_id='+encodeURIComponent(menuid)+'&quan='+encodeURIComponent(quan)+'&price='+encodeURIComponent(price)+'&tillval_count='+tillval_count+'&lunchmeny=0',
+							success: function(value){
+								var resid = value;
+								if(tillval_count>0){
+					
+									$('.special_request_content').html('<center><img src="'+siteurl+'/images/loader.gif'+'"></center>');
+									$.ajax({
+										url: "<?php echo CHILD_URL; ?>/special-request.php",
+										type: 'POST',
+										async:false,
+										data: 'id='+encodeURIComponent(resid)+'&menu_det='+encodeURIComponent(menu_det)+'&siteurl='+encodeURIComponent('<?php echo CHILD_URL; ?>')+'&temp_tillval='+tillval_count+'&price='+encodeURIComponent(price)+'&check=second'+'&chkuniqeid='+encodeURIComponent(uniq),
+										success: function(value){
+											$('.special_request_content').html(value);
 										}
-										
-										$('.step-2-wrapper').html('<div class="steps-container"><h3 class="thestep-label">Take away</h3><div class="steps-box step-2" style="height: 200px !important;"><p>Tyvärr går det inte att beställa take away via hemsidan för tillfället. Vänligen ring eller maila oss för mer information.</p><a href="#text-18" class="nosettings btn" onclick="$(\'.steps-container\').fadeOut();">Ok</a><div class="clear"></div></div></div>');
-										$('.steps-container').center();
-										
-									}
-								
+									});
 									
+									$('.fader, #special_request').fadeIn();
+									
+									$('#btn_skip').click(function(){
+										//for the cart
+										getcountItem(0);
+									});	 
+								
 								}
 								else{
-									alert('Minsta beställning är en (1) rätt.');
+								   
+									$('#takeaway .cart_content').html('<center><img src="'+siteurl+'/images/loader.gif'+'"></center>');
+									$('#takeaway .cart_content').load("<?php echo CHILD_URL.'/takeaway-cart.php';?>");
+									
+									//for the cart
+									getcountItem(0);
+									
 								}
 								
-							});
-							
+								
+							}
+					});
+					
+			}
+			else{
+				
+				//for no settings
+				
+				$.fn.center = function ()
+				{
+					this.css("position","fixed");
+					this.css("top", (($(window).height() / 2) - (this.outerHeight() / 2))+50);
+					return this;
+				}
+				
+				$('.step-2-wrapper').html('<div class="steps-container"><h3 class="thestep-label">Take away</h3><div class="steps-box step-2" style="height: 200px !important;"><p>Tyvärr går det inte att beställa take away via hemsidan för tillfället. Vänligen ring eller maila oss för mer information.</p><a href="#text-18" class="nosettings btn" onclick="$(\'.steps-container\').fadeOut();">Ok</a><div class="clear"></div></div></div>');
+				$('.steps-container').center();
+				
+			}
+		
+			
+		}
+		else{
+			alert('Minsta beställning är en (1) rätt.');
+		}
+		
+	});
+	
 							
 							//for lunch meny
 							
@@ -2474,10 +2313,6 @@ function script_catering(){
 								var quan = 1;
 								var price = $(this).attr('data-title');
 								var siteurl = $('.takeaway_lunch_cart_wrap').attr('data-rel');
-								//added by Karbhe
-								//var isMobile = (/android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
-								//if(isMobile){ quan = 1; }
-								
 								var check = getPanic();
 								
 								if(check==1){
@@ -2510,7 +2345,7 @@ function script_catering(){
 										$.ajax({
 												url: "<?php echo CHILD_URL; ?>/lunch-orders.php",
 												type: 'POST',
-												data: 'uniq='+encodeURIComponent(uniq)+'&menu_id='+encodeURIComponent(menuid)+'&quan='+encodeURIComponent(quan)+'&price='+encodeURIComponent(price)+'&lunchmeny=true',
+												data: 'uniq='+encodeURIComponent(uniq)+'&menu_id='+encodeURIComponent(menuid)+'&quan='+encodeURIComponent(quan)+'&price='+encodeURIComponent(price)+'&lunchmeny=1',
 												success: function(value){
 														   
 															$('#takeaway-lunch .lunch_cart_content').html('<center><img src="'+siteurl+'/images/loader.gif'+'"></center>');
@@ -2664,10 +2499,6 @@ function script_catering(){
 							
 						});
 						
-						
-						//for lunch meny
-						
-						 
 						 
 						 //for catering...
 						 

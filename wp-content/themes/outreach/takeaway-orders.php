@@ -6,10 +6,10 @@
 	$quan = $_POST['quan'];
 	$price = $_POST['price'];
 	$lunchmeny = $_POST['lunchmeny'];
-	$dagens = $_POST['dagens'];
+	
 	
 	$tillval_count = $_POST['tillval_count'];
-	
+
 	$theresid = 0;
 
 	$q=mysql_query("select id from reservation where uniqueid='".$uniq."' and deleted=0 and reservation_type_id=2") or die(mysql_error());
@@ -34,18 +34,20 @@
 		if($tillval_count>0){
 			$addedqry = ', temp_tillval=1';
 		}
-
+    
 		mysql_query("update reservation_detail set quantity = (quantity+$quan) $addedqry where  menu_id='".$menu_id."' and reservation_id = '".$reservation_id."' and lunchmeny=0") or die(mysql_error());
 		
 		$theresid = $res_id;
 		
 	}else{
-		if(!isset($lunchmeny)){ // 0 is for takeaway
+		if($lunchmeny == 0){ // 0 is for takeaway
 		
 			if($tillval_count>0){
+                
 				mysql_query("insert into reservation_detail(reservation_id,menu_id,quantity,price,status,lunchmeny,temp_tillval) values('".$reservation_id."','".$menu_id."','".$quan."','".$price."',0,0,1)") or die(mysql_error());
 			}
 			else{
+
 				mysql_query("insert into reservation_detail(reservation_id,menu_id,quantity,price,status,lunchmeny) values('".$reservation_id."','".$menu_id."','".$quan."','".$price."',0,0)") or die(mysql_error());
 			}
 			

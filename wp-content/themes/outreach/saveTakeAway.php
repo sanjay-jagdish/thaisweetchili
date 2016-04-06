@@ -216,7 +216,7 @@
 			require 'PHPMailer/PHPMailerAutoload.php';	
 			
 			 function theOrderType($id){
-				$q=mysql_query("select if(rd.lunchmeny=0,' (À la carte)', if(rd.lunchmeny=2, ' (Frukost)', ' (Lunch)') ) as thetype from reservation as r, reservation_detail as rd where r.id=rd.reservation_id and rd.reservation_id='".$id."'") or die(mysql_error());
+				$q=mysql_query("select if(rd.lunchmeny=0,' (À la carte)', if(rd.lunchmeny=1, ' (Frukost)', ' (Lunch)') ) as thetype from reservation as r, reservation_detail as rd where r.id=rd.reservation_id and rd.reservation_id='".$id."'") or die(mysql_error());
 				$r=mysql_fetch_assoc($q);
 				
 				return $r['thetype'];
@@ -646,16 +646,12 @@
                 
 				<?php } ?>	
 			<?php
-			$qe=mysql_query("select var_value from settings where var_name='copy_email'") or die(mysql_error());
+			
+			
+           $qe=mysql_query("select var_value from settings where var_name='copy_email'") or die(mysql_error());
 			$re=mysql_fetch_assoc($qe);
-			
-			
-			//$to = 'david.rasti@gmail.com';
-			
-			$to = 'thaisweetchili.test@gmail.com';
-			
-			
-			if($re['var_value']!=''){
+			$to = 'ekonomi.limone@hotmail.se';
+		   if($re['var_value']!=''){
 				$to = $re['var_value'];
 			}
 			
@@ -668,7 +664,10 @@
 			if($rn['var_value']!=''){
 				$name=$rn['var_value'];
 			}
+
+						
 			$subject = 'Ny beställning';
+			
 			
 			 $mail = new PHPMailer();
 			 $mail->CharSet = 'UTF-8';

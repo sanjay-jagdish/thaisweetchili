@@ -1,6 +1,6 @@
 <?php session_start();
-	include '../config/config.php';
-	require 'PHPMailer/PHPMailerAutoload.php';	
+	include_once '../config/config.php';
+	//require 'PHPMailer/PHPMailerAutoload.php';	
 	
 	function getNameofSignee($id){
 		$q=mysql_query("select concat(fname,' ',lname) as name from account where id=(select signatory from reservation_status_history where reservation_id='".$id."' order by id desc limit 1)") or die(mysql_error());
@@ -78,7 +78,7 @@
 	}
 	
 	
-	if($status==14){
+	if($status==14 ){
 		
 		$q=mysql_query("select fname,lname, email from account where id=(select account_id from reservation where id='".$id."')");
 		$r=mysql_fetch_assoc($q);
@@ -87,7 +87,7 @@
 			
 		$name=$r['fname'].' '.$r['lname'];
 		
-		$subject = 'Status - Take away';
+		$subject = 'Status';
 		
 		// message
 		$message = "
@@ -594,7 +594,7 @@
 			
 		$name=$r['fname'].' '.$r['lname'];
 					
-		$subject = 'Bekräftelse - Take away';
+		$subject = 'Bekräftelse';
 			
 		// message
 		$message = "
@@ -602,11 +602,10 @@
 				<body>
 					<div style='font-size:16px;'>".$themsg."
 						<br><br>
-						 
-						<strong>Välkomna till Thai Sweet Chili!</strong><br><br>
-		   
-					    Stora gatan 4<br>
-					    021-417560
+						Thai Sweet Chili<br />
+						Ulvsundavägen 176<br>
+					    168 67 Bromma<br>
+					    08 - 28 38 39
 					</div>
 				</body>
 			</html>
@@ -641,5 +640,5 @@
 		
 	
 	echo $_SESSION['login']['name'].'**'.$subject.'**'.$message.'**'.$to.'**'.$name.'**'.$messageforuser;
-	
+	mysql_close($con);
 ?>

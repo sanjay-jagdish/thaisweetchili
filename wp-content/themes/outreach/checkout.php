@@ -2,40 +2,74 @@
 /*
 Template Name: checkout process 
 */
+
+
+
 $type = $_GET['type'];
 if($type == 'takeaway'){
-$chkqnkid = $_COOKIE['takeaway_id']; 
-$tableName = "takeaway_settings";
+	$chkqnkid = $_COOKIE['takeaway_id']; 
+	$tableName = "takeaway_settings";
 }else if($type == 'lunch'){
-$chkqnkid = $_COOKIE['lunchmeny_id']; 
-$tableName = "lunchmeny_settings";
-}else{	
-wp_redirect(home_url() ); 
-exit;
+	$chkqnkid = $_COOKIE['lunchmeny_id']; 
+	$tableName = "lunchmeny_settings";
+} else {	
+	wp_redirect(home_url() ); 
+	exit;
 }
+
 get_header('checkout');
+
 include 'ajax/steps-asap.php';
 $q=mysql_query("select * from reservation_detail where reservation_id=(select id from reservation where deleted=0 and uniqueid='".$chkqnkid."' order by id desc limit 1)") or die(mysql_error());
-if(mysql_num_rows($q) < 1){
-wp_redirect(home_url() ); 
-exit;
+if(mysql_num_rows($q) < 1)
+{
+	wp_redirect(home_url() ); 
+	exit;
 }
+
+// Get selected days to be shown in calendar
+$query = "select days, DATE(start_datetime) as start_date,DATE(end_datetime) as end_date from takeaway_settings where deleted=0";
+$rs = mysql_query( $query );
+$dates = array();
+while($row = mysql_fetch_assoc($rs)) {
+	//$dates = array_merge($dates, createDateRangeArray($row['start_date'], $row['end_date']));
+}
+
+function createDateRangeArray($strDateFrom, $strDateTo)
+{
+    $aryRange = array($strDateFrom);
+    $iDateFrom = mktime(1,0,0,substr($strDateFrom,5,2), substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+    $iDateFrom = strtotime($strDateFrom);
+
+    $iDateTo = mktime(1,0,0,substr($strDateTo,5,2), substr($strDateTo,8,2),substr($strDateTo,0,4));
+    $iDateTo = strtotime($strDateTo);
+
+    if ($iDateTo > $iDateFrom)
+    {
+        //array_push($aryRange, date('Y-m-d',$iDateFrom));
+        while ($iDateFrom < $iDateTo)
+        {
+            $iDateFrom += 86400; // add 24 hours
+            array_push($aryRange, date('Y-m-d', $iDateFrom));
+        }
+    }
+    return $aryRange;
+}
+//$dates = array_unique($dates);
+
+// Get asap availability
 $asapStatus = GetAsapStatus($tableName);
- if($asapStatus){
- 	$status = "radio1";
- 	$chk = "checked";
- }else{
-   $status = "";
-   $chk = "";
- }
+
 // Get current user
 $current_user = wp_get_current_user();
-if( $current_user ) {
+if( $current_user ) 
+{
 	$query = "select * from `account` where id='".$current_user->ID."'";
 	$userdata = $wpdb->get_row($query);
 }
 ?>
 
+<div class="checkout-page-outer">
 <div class="container clearfix">
 	<div class="page-title">
 		<h3>Kassa</h3>
@@ -48,8 +82,7 @@ if( $current_user ) {
 					<div class="col-xs-6">
 						<div class="delvry-apap"> 
 							<input type="hidden" name="chkuniqeid" value="<?php echo $chkqnkid; ?>" id="chkuniqeid" />
-                            <input type="hidden" name="pluscheck" value="" id="pluscheck" /> 
-							<input type="radio" name="radiog_lite" id="radio1" class="css-checkbox" <?php echo $asapStatus?'checked':'disabled'; ?>/>	
+                            <input type="radio" name="radiog_lite" id="radio1" class="css-checkbox" <?php echo $asapStatus?'checked':'disabled'; ?>/>	
 							<label for="radio1" class="css-label radGroup1">Snarast</label>
 							<input type="hidden" id="asap" name="asap" value="<?php echo $asapStatus?'1':'0'; ?>">
 
@@ -138,48 +171,18 @@ if( $current_user ) {
 				
 				<div id='userdata' style="display:<?php echo $current_user->ID?'block':'none'?>">
 					<div class="form-group">
-						<label for="telefon">Telefon</label>
+						<label for="telefon">*Telefonnummer</label>
 						<input type="text" name="phone" class="form-control required" id="phone" required value="<?php echo $userdata->mobile_number; ?>">
 					</div>
 					<div class="form-group">
-						<label for="fullname">Name</label>
+						<label for="fullname">*Namn</label>
 						<input type="text" name="name" class="form-control required" id="fullname" required value="<?php echo $userdata->fname; ?>">
 					</div>
 				</div>
 				
 				<p id='loggedin' style="display:<?php echo $current_user->ID? 'block': 'none';?>">
-					Welcome <span id='current_email'><?php echo $current_user->user_email; ?> </span> <a href="<?php echo wp_logout_url( site_url('checkout/?type='.$type) ); ?>">Logout?</a>
+					Välkommen <span id='current_email'><?php echo $current_user->user_email; ?> </span> <a href="<?php echo wp_logout_url( site_url('checkout/?type='.$type) ); ?>">Logga ut?</a>
 				</p>
-
-				<!-- <form method="Post" id="login-form">
-					<div class="icon-field">
-						<input type="text" class="form-control" placeholder="E-Post" name="email" id="email" >
-						<i class="flaticon-back"></i>
-					</div>
-					<div class="icon-field">
-						<input type="password" class="form-control" placeholder="Losenord" name="pass" id="pass" >
-						<i class="flaticon-web"></i>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="chckbox-cont">
-								<input type="checkbox" name="checkboxG52" id="checkboxG52" class="css-checkbox" >
-								<label for="checkboxG52" class="css-label">Kom ihag mig</label>
-							</div>
-						</div>
-						<div class="col-md-6 text-right">
-							<p><span class="show-glomt">Glomt losenord</span></p>
-						</div>
-					</div>
-					<div class="chckbox-cont">
-						<input type="checkbox" name="checkboxG55" id="checkboxG55" class="css-checkbox" required>
-						<label for="checkboxG55" class="css-label">Jag har last och godkanner</label>
-						<a href="#policy" class="popup policy">anvandarvillkoren</a>
-					</div>
-					<div class="btn-cont">
-						<button type="button" class="btn btn-lg btn-red btn-full" id="login-button">LOGGA IN</button>
-					</div>
-				</form> -->
 			</div>
 
 			<div id="policy" style="display:none;">
@@ -199,91 +202,6 @@ if( $current_user ) {
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore $asapStatusmagna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</div>
 			</div>
-
-			<div class="col-md-8">
-				<div class="signup-form">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Fornamn">
-								<i class="flaticon-black"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Efternamn">
-								<i class="flaticon-black"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="E-post">
-								<i class="flaticon-back"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Mobilnummer">
-								<i class="flaticon-technology"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-					  <input type="text" class="form-control" placeholder="Gatuadress">
-								<i class="flaticon-internet"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Ort">
-								<i class="flaticon-map"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Postnummer">
-								<i class="flaticon-tool-1"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<select class="form-control">
-									<option value="Sweden">Sweden</option>
-								</select>
-								<i class="flaticon-web"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Lösenord">
-								<i class="flaticon-back"></i>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="icon-field">
-								<input type="text" class="form-control" placeholder="Upprepa lösenord">
-								<i class="flaticon-back"></i>
-							</div>
-						</div>
-					</div>						
-				</div>
-				<div class="provide-emailid">
-					<div class="row">
-						<div class="col-md-6">
-							<h4>Uppge din e-postadress:</h4>
-							<form>
-								<div class="icon-field">
-									<input type="text" class="form-control" placeholder="E-Post">
-									<i class="flaticon-back"></i>
-								</div>
-								<div class="btn-cont">
-									<button type="button" class="btn btn-lg btn-red btn-full" >LOGGA IN</button>
-								</div>
-							</form>	
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -294,13 +212,13 @@ if( $current_user ) {
 				<div class="row">
 					<div class="col-md-4">
 						<div class="online-pay">
-							<input type="radio" name="radiopay_lite" id="radiop1" class="css-checkbox pay-option" checked="checked" value="online" />
+							<input type="radio" name="radiopay_lite" id="radiop1" class="css-checkbox pay-option"  value="online" />
 							<label for="radiop1" class="css-label radGroup1">Betala online</label>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="cash-pay">
-							<input type="radio" name="radiopay_lite" id="radiop2" class="css-checkbox pay-option" value="cash" checked/>
+							<input type="radio" name="radiopay_lite" id="radiop2" class="css-checkbox pay-option" value="cash" />
 							<label for="radiop2" class="css-label radGroup1">Betalas vid avhämtning</label>
 						</div>
 					</div>
@@ -312,9 +230,8 @@ if( $current_user ) {
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-7">
+					<div class="col-md-7 col-md-offset-2">
 						<button type="button" class="btn btn-lg btn-red btn-full" id="main-checkout">BESTÄLL</button>
-						<button type="button" class="btn btn-lg btn-red btn-full" id="main-checkout1" style="display:none;" onclick="validateCC()">BESTÄLL</button>
 					</div>
 				</div>
 			</div>
@@ -342,35 +259,40 @@ if( $current_user ) {
 					</div>
 					<input type="hidden" id="email" >
 					<input type="hidden" id="pass" >
-					<input type="hidden" id="paymenttype" value="cash">
+					<input type="hidden" id="paymenttype" value="">
+					<div class="icon-field">
+						<button type="button" class="btn btn-lg btn-red btn-full" id="main-checkout2">BESTÄLL</button>
+					</div>	
 				</div>
 				<div class="stripe-form" style="display:none;">
 <span class="payment-errors"></span>
 
 					<div class="icon-field">
 						<input type="text" class="form-control" placeholder="Credit Card Number" data-stripe="number">
-						<i class="flaticon-social"></i>
+						<i class="glyphicon glyphicon-credit-card"></i>
 					</div>
 					<div class="icon-field">
 						<input type="text" class="form-control" placeholder="CVC" data-stripe="cvc">
-						<i class="flaticon-social-1"></i>
+						<i class="glyphicon glyphicon-modal-window"></i>
 					</div>
 					<div class="icon-field">
 						<input type="text" class="form-control" placeholder="Expiration Month (MM)" data-stripe="exp-month">
-						<i class="flaticon-internet"></i>
+						<i class="glyphicon glyphicon-calendar"></i>
 					</div>
 					<div class="icon-field">
 						<input type="text" class="form-control" placeholder="Expiration Year (YYYY)" data-stripe="exp-year">
-						<i class="flaticon-tool-1"></i>
+						<i class="glyphicon glyphicon-calendar"></i>
 					</div>
-					
+					<div class="icon-field">
+					<button type="button" class="btn btn-lg btn-red btn-full" id="main-checkout1" style="display:none;" onclick="validateCC()">BESTÄLL</button>
 <input type="hidden" name="stripeToken" value="" id="stripeToken" />
+</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+</div>
 <div class="fader"></div>
 <div id="special_request">
 	<div class="special_request_wrap">
@@ -381,13 +303,35 @@ if( $current_user ) {
     </div>
 </div>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog confrm-ordr-popup">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <a href="<?php echo home_url(); ?>" class="close" >&times;</a>
+        <h4 class="modal-title">Bekräftelse</h4>
+      </div>
+      <div class="modal-body">
+        <p>Tack för din beställning. </p>
+        <p><strong>Om beställningen har gjorts under våra öppettider så kommer en bekräftelse på din beställning att mails till dig inom kort.</strong></p>
+        <p> Vänligen kontrollera din skräpkorg om du inte har fått någon bekräftelse inom 5 minuter.</p>
+        <p>Om du har lagt din beställning under tiden vi har stängt så skickas mailas en bekräftelse till dig så snart vi har öppnat.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="<?php echo home_url(); ?>" class="btn btn-default" >Close</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <script type="text/javascript" src="<?php echo CHILD_URL; ?>/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="<?php echo CHILD_URL; ?>/checkout-scripts/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo CHILD_URL; ?>/checkout-scripts/fancybox/jquery.fancybox.js"></script>
-
 <script type="text/javascript" src="<?php echo CHILD_URL; ?>/checkout-scripts/js/ajax.js"></script>
 <script src="https://cdn.auth0.com/js/lock-8.2.min.js"></script>
-
 <script type="text/javascript" src="<?php echo CHILD_URL; ?>/checkout-scripts/js/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -395,7 +339,9 @@ jQuery(function($){
 	var newuser = 0, orderTime = '', minTime = 0, maxTime = 0;
 	var current_email = "<?php echo $current_user->user_email; ?>";
 	var siteurl = $('#main-table').attr('data-rel');
+	var logo = "<?php echo site_url()?>/webmin/images/e2flogo.png";
 	var ABSPATH = "<?php echo ABSPATH; ?>";
+	var tablename = "<?php echo $tableName; ?>";
 	var adminurl = "<?php echo admin_url('admin-ajax.php');?>";
 	var AUTH0_CLIENT_ID = 'NGPPsIJAXVho281vlZPAEq7CCFs0695v'; 
 	var AUTH0_DOMAIN = 'e2f.eu.auth0.com';
@@ -405,9 +351,39 @@ jQuery(function($){
 		AUTH0_DOMAIN
     );
 	
+	var options = {
+		icon: logo,
+		dict: {
+			loadingTitle: 'loading..',
+		    signin: {
+		      	title: "Logga in",
+		      	serverErrorText: 'Något gick fel med din inloggning.',
+		      	wrongEmailPasswordErrorText: 'Fel angiven e-post eller lösenord',
+		      	emailPlaceholder: 'E-post',
+		      	passwordPlaceholder: 'Lösenord',
+		      	separatorText: 'Eller',
+		      	returnUserLabel: 'Förra gången loggade du in med…',
+		      	all: 'Inte ditt konto?',
+		      	userConsentFailed: 'Något gick fel. Försök igen.'
+		    },
+		    signup: {
+		    	title: 'Skapa konto',
+	            serverErrorText: 'Något gick fel med din inloggning.',
+	            emailPlaceholder: 'E-post',
+	            passwordPlaceholder: 'Ange ett lösenord',
+	            separatorText: 'Eller',
+	            headerText: 'Eller uppge din e-post och lösenord',
+	            userExistsErrorText: 'The user already exists.',
+	        },
+	        reset: {
+	            serverErrorText: 'There was an error processing the reset password.'
+	        }
+		}
+	};
+	
 	// Auth0 Login
 	$('.auth-login').click(function() {
-		lock.showSignin(function(err, profile, token) {
+		lock.showSignin(options, function(err, profile, token) {
 			if (!err)
 			{
 				// Save the JWT token.
@@ -438,9 +414,10 @@ jQuery(function($){
 			}
 		});
 	});
+
 	// Auth0 Signup
 	$('.auth-signup').click(function() {
-		lock.showSignup(function(err, profile, token) {
+		lock.showSignup(options, function(err, profile, token) {
 			if (!err)
 			{ 
 			  	// Save the JWT token.
@@ -467,41 +444,51 @@ jQuery(function($){
 			}
 		});
 	});
-	$(".menu-primary_menu-container ul li > a").each(function() {	
+
+	$("#menu-primary_menu li > a").each(function() {	
 	  	var hr = $(this).attr('href');
 	  	if(hr.charAt(0) == "#"){		 
 			$(this).attr('href','<?php echo home_url(); ?>/'+ hr);
 	  	}
 	});
+	
 	var dateToday = new Date();
+	// var allowDates = <?php echo json_encode($dates); ?>;
+	// console.log(allowDates);
 	var loaded = false;
 	$('#input_datetime').datetimepicker({
 		inline: true,
 		timepicker: 0,
 		dayOfWeekStart: 1,
 		minDate: dateToday,
+		defaultDate: '',
 	    scrollMonth: 0,
 	    maxDate: new Date(dateToday.getFullYear(), dateToday.getMonth()+2, -1),
 	    yearEnd: false,
-	    monthEnd: false, 
+	    monthEnd: false,
+	    //allowDates: allowDates,
+	    //formatDate:'Y-m-d',
 		onGenerate:function(dp,$input){
 			if(!loaded)
 			{
 				$.ajax({
 					url: siteurl+"/ajax/steps-otherTime.php",
 					type: 'POST',
-					data: 'datetime='+dp.toDateString()+'&tablename=takeaway_settings',
+					data: 'datetime='+dp.toDateString()+'&tablename='+tablename,
 					success: function(value){
-						var obj = $.parseJSON(value);
-						minTime = convertToSeconds(obj[0]);
-						maxTime = convertToSeconds(obj[1]);
-						$('#orderTime').html( obj[0] && obj[1] ? obj[0] : '');
-						$('#range').html( obj[0] && obj[1] ? obj[0]+'-'+obj[1] : 'Ingen tid tillgänglig');
-						if( !obj[0] && !obj[1]) {
-							$('.times').attr('disabled', true);
-						} else {
+						var value = $.parseJSON(value);
+						if( typeof value !== 'undefined' && value.can_order )
+						{
 							$('.times').attr('disabled', false);
+							$('#orderTime').html(value.order_start_time);
+							$('#range').html(value.opening_time + '-' + value.closing_time);
+						} else {
+							$('.times').attr('disabled', true);
+							$('#range').html('STÄNGT');
+							$('#orderTime').html('');
 						}
+						minTime = convertToSeconds(value.order_start_time);
+						maxTime = convertToSeconds(value.order_end_time);
 					}
 				});
 				loaded=true; 
@@ -511,23 +498,27 @@ jQuery(function($){
 			$.ajax({
 				url: siteurl+"/ajax/steps-otherTime.php",
 				type: 'POST',
-				data: 'datetime='+dp.toDateString()+'&tablename=takeaway_settings',
+				data: 'datetime='+dp.toDateString()+'&tablename='+tablename,
 				success: function(value){
-					var obj = $.parseJSON(value);
-					minTime = convertToSeconds(obj[0]);
-					maxTime = convertToSeconds(obj[1]);
-					$('#orderTime').html( obj[0] && obj[1] ? obj[0] : '');
-					$('#range').html( obj[0] && obj[1] ? obj[0]+'-'+obj[1] : 'Ingen tid tillgänglig');
-					if( !obj[0] && !obj[1] ) {
-						$('.times').attr('disabled', true);
-					} else {
+					var value = $.parseJSON(value);
+					if( typeof value !== 'undefined' && value.can_order )
+					{
 						$('.times').attr('disabled', false);
+						$('#orderTime').html(value.order_start_time);
+						$('#range').html(value.opening_time + '-' + value.closing_time);
+					} else {
+						$('.times').attr('disabled', true);
+						$('#range').html('STÄNGT');
+						$('#orderTime').html('');
 					}
+					minTime = convertToSeconds(value.order_start_time);
+					maxTime = convertToSeconds(value.order_end_time);
 				}
 			});
 		}
 	}).datetimepicker('hide');
 	$.datetimepicker.setLocale('se');
+
 	$('#radio2').on('click', function () {
 		if ($(this).is(':checked')){
 			$('#radio1').attr('checked', false);
@@ -549,34 +540,38 @@ jQuery(function($){
 	$('.popup').fancybox({
 		maxWidth:800,
 	});
+
 	$(document).on('click','.create-accountt',function(){
 		$('.signup-form').show();
 		$('.provide-emailid').hide();
 	});
+
 	$(document).on('click','.show-glomt',function(){
 		$('.provide-emailid').show();
 		$('.signup-form').hide();
 	});
+
 	$('.pay-option').on('click', function () {
+
 	    var ptype = $(this).val(); 
 	    $("#paymenttype").val(ptype);
-
-
 	    $('.stripe-form').hide();
 	    if(ptype=="online"){
-	    $('.stripe-form').show();	
-	    $('#main-checkout').hide();
-	    $('#main-checkout1').show();
+	    	$('.stripe-form').show();	
+	    	$('#main-checkout').hide();
+	    	$('#main-checkout1').show();
 	    }else{
 	    	$('#main-checkout1').hide();
-	    $('#main-checkout').show();
+	   		$('#main-checkout').show();
 	    }
 
 		$('.invoice-form').hide();
 		if ($('.invoice-form-show').is(':checked')){
 			$('.invoice-form').show();
+			$('#main-checkout').hide();
 		}
 	});
+
 	$(document).on("click",'#main-checkout',function() {
 	    if( current_email )
 	    {
@@ -600,15 +595,18 @@ jQuery(function($){
 		    var totalprice = $('#total-price').val();
 		    var deliver = 0;
 			var paymenttype =  $('#paymenttype').val();
+			if(paymenttype == ''){
+				alert('Select payment type');
+				return false;
+			}
 
-var stripe_token = '';
-if(paymenttype=="online"){
-	var temp_token = $("#stripeToken").val();
-	if(temp_token!=""){
-		stripe_token = "&stripeToken="+temp_token;
-	}
-}
-
+			var stripe_token = '';
+			if(paymenttype=="online"){
+				var temp_token = $("#stripeToken").val();
+				if(temp_token!=""){
+					stripe_token = "&stripeToken="+temp_token;
+				}
+			}
 
 			var uniq =  '<?php echo $chkqnkid; ?>';
 			var cart_opt = 0;
@@ -622,7 +620,10 @@ if(paymenttype=="online"){
 				data: 'em='+encodeURIComponent(current_email)+'&fullname='+encodeURIComponent(fullname)+'&phone='+encodeURIComponent(phone)+'&newuser='+encodeURIComponent(newuser)+'&date='+encodeURIComponent(date)+'&time='+encodeURIComponent(time)+'&paymenttype='+encodeURIComponent(paymenttype)+'&uniq='+encodeURIComponent(uniq)+'&asap='+encodeURIComponent(asap)+'&deliver='+encodeURIComponent(deliver)+'&totalprice='+encodeURIComponent(totalprice)+'&type='+encodeURIComponent(type)+stripe_token,
 				success: function(value){
 				    if(value=='done'){
-						window.location="<?php echo site_url('order-received'); ?>";
+						$('#myModal').modal({
+                           backdrop: 'static',
+                           keyboard: false
+                       	});
 					} else {
 						alert('Det gick inte att lämna orderdetaljer .');
 					}
@@ -652,6 +653,7 @@ if(paymenttype=="online"){
 		
 		$('.fader, #special_request').fadeIn();
 	});
+
 	$('#addHour').click(function(){
 		var current = $('#orderTime').html();
 		var time = current.split(':');
@@ -662,9 +664,10 @@ if(paymenttype=="online"){
 			minute = current!=maxTime ? minute : '00';
 			$('#orderTime').html(hour+':'+minute);
 		} else {
-			alert('ogiltig Tid');
+			alert('Du har valt ett ogiltigt tid, försök igen');
 		}
 	});
+
 	$('#subHour').click(function(){
 		var current = $('#orderTime').html();
 		var time = current.split(':');
@@ -674,9 +677,10 @@ if(paymenttype=="online"){
 		if( hour>0 && current>=minTime && current<=maxTime ) {
 			$('#orderTime').html(hour+':'+minute);
 		} else {
-			alert('ogiltig Tid');
+			alert('Du har valt ett ogiltigt tid, försök igen');
 		}
 	});
+
 	$('#addMin').click(function(){
 		var current = $('#orderTime').html();
 		var time = current.split(':');
@@ -690,9 +694,10 @@ if(paymenttype=="online"){
 		if( hour<24 && current>=minTime && current<=maxTime ) {
 			$('#orderTime').html(hour+':'+minute);
 		} else {
-			alert('ogiltig Tid');
+			alert('Du har valt ett ogiltigt tid, försök igen');
 		}
 	});
+
 	$('#subMin').click(function(){
 		var current = $('#orderTime').html();
 		var time = current.split(':');
@@ -707,9 +712,10 @@ if(paymenttype=="online"){
 		if( hour>0 && current>=minTime && current<=maxTime ) {
 			$('#orderTime').html(hour+':'+minute);
 		} else {
-			alert('ogiltig Tid');
+			alert('Du har valt ett ogiltigt tid, försök igen');
 		}
 	});
+
 	$(document).on('click','.remove-tillval',function(){
  		var portion = $(this).attr('data-rel');
 		var portion_options = $(this).attr('data-id');
@@ -720,7 +726,7 @@ if(paymenttype=="online"){
 		var uniq = $('#btn_skip').attr('data-rel');
 		
 		var type = 'update';
-		if($('.cart-opt').length==1){
+		if($('.cart-opt').length == 1){
 			type = 'delete';
 		}
 		
@@ -756,7 +762,7 @@ if(paymenttype=="online"){
 		     $("#total-price").val($(".reqtotal label").attr('data-total'));
              
 		     checkgetcountItem(0);
-				if($('.cart-opt').length==2){
+				if($('.cart-opt').length < 2){
 					$('.remove-tillval, .cart-opt input[type=button]').hide();
 				}
 				
@@ -765,16 +771,15 @@ if(paymenttype=="online"){
 	});
 });
 
-
 function validateCC(){
 	Stripe.setPublishableKey('pk_test_5xbqEycbrzJY82RQgzffb5mg');
 	var $form = $(".stripe-form");
 	Stripe.card.createToken($form, stripeResponseHandler);
 }
 
-function stripeResponseHandler(status, response) {
+function stripeResponseHandler(status, response) 
+{
   var $form = $('.stripe-form');
-
   if (response.error) {
     // Show the errors on the form
     $form.find('.payment-errors').text(response.error.message);
@@ -789,7 +794,6 @@ function stripeResponseHandler(status, response) {
     //$form.get(0).submit();
     $('#main-checkout').click();
   }
-  
 };
 
 function checkgetcountItem(del)
@@ -838,11 +842,12 @@ function checkgetcountItem(del)
 		$('.toggle_cart_lunch span').html(str[2]);
 		$("#takeaway-lunch").fadeOut();	
 	}
-}   	
+}
+
 // Convert time to seconds
 function convertToSeconds(time)
 {
-	if( !time ) {
+	if( !time || time=='undefined' ) {
 		return 0;
 	}
 	var a = time.split(':');

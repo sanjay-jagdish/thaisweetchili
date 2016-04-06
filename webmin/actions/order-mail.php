@@ -58,7 +58,7 @@
 		$name=$rn['var_value'];
 	}
 	
-	$subject = 'Bekräftelse - Take away';
+	$subject = 'Bekräftelse';
 	
 	$mail = new PHPMailer();
 	$mail->CharSet = 'UTF-8';
@@ -82,5 +82,5 @@
 	$mail->send();
 	
 	//end email for admin
-
+mysql_close($con);
 ?>

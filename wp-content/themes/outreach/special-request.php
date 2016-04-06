@@ -318,11 +318,6 @@ jQuery(function(){
    jQuery('#btn_skip').click(function(){
 	  
 	  var addons='';
-	  /*var name = jQuery('.req_dish').html();
-	  var menu_id = jQuery('.req_dish').attr('data-id');
-	  var uniq = jQuery('.req_dish').attr('data-rel');*/
-	  
-	  //var name = jQuery(this).attr('data-title');
 	  var menu_id = jQuery(this).attr('data-placeholder');
 	  var uniq = jQuery(this).attr('data-rel');
 	  
@@ -389,15 +384,12 @@ jQuery(function(){
 			success: function(value){
 				
 				getcountItem(0);
-				
-				if(jQuery('.cart-opt').length==2){
-					
+				if(jQuery('.cart-opt').length < 2){
 					jQuery('.remove-tillval, .cart-opt input[type=button]').hide();
-					
 				}
 				
-				jQuery('.cart_content').load(siteurl+"takeaway-cart.php");
-				jQuery('.prod-cont').load(siteurl+"ajax/cart.php");
+				jQuery('.cart_content').load(siteurl+"/takeaway-cart.php");
+				
 			}
 		 });	
 			
@@ -415,9 +407,8 @@ jQuery(function(){
 		var siteurl = jQuery('.takeaway_cart_wrap').attr('data-rel');
 	
 		jQuery('.close-modals').click(function(){
-			
 			getcountItem(1);
-			
+			jQuery('.cart_content').load(siteurl+"/takeaway-cart.php");
 			var ids = jQuery(this).attr('data-rel');
 			jQuery(ids).fadeOut('fast');
 			
@@ -445,4 +436,5 @@ jQuery(function(){
 </script>
 <?php	
 	}
+mysql_close($con);	
 ?>

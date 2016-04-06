@@ -169,7 +169,7 @@ return '<div class="takeaway-wrapper" style="overflow:hidden; padding: 0;">'.$ta
 
 function script_takeaway(){
 		?>
-	<script type="text/javascript">
+<script type="text/javascript">
 	var siteurl = $('.takeaway_cart_wrap').attr('data-rel');
 	function updateQuantity(val,id,menu_id, tillval_count, menu_det, price)
 	{
