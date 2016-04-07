@@ -2408,9 +2408,9 @@ input.wpcf7-form-control.wpcf7-submit {
 	border-radius: 2px;
 }
 
-.addme_takeaway:hover,
-.subtractme_takeaway:hover{
-	background-color: #2B4C7E !important;
+.addme_takeaway:hover,.addme_lunch:hover,
+.subtractme_takeaway:hover,.subtractme_lunch:hover{
+	background-color: #ff0000 !important;
 }
 
 .addme_takeaway,
@@ -2423,7 +2423,7 @@ input.wpcf7-form-control.wpcf7-submit {
 	width: 19px;
 	height: 19px;
 	font-size: 15px !important;
-	background-color: #345687 !important;
+	background-color: #5C020A !important;
 	border: none !important;
 	box-shadow: none !important;
 	color: #fff !important;
@@ -4075,7 +4075,7 @@ color: #999;
 	display:none;
 	cursor:pointer;*/
 	
-	background:#345687 url(images/whitecart.png) no-repeat 10px center;
+	background:#5C020A url(images/whitecart.png) no-repeat 10px center;
 	padding:5px 5px 9px 50px;
 	bottom:-10px;
 	position:fixed;

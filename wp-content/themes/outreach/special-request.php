@@ -97,7 +97,7 @@
                                         
                                     ?>	
                                         <div class="opt-item">
-                                            <?php if($opt['single_option']==0){ ?>
+                                            <?php if($theoptioncount==0){ ?>
                                             <input type="checkbox" rel="st-<?php echo $r['id']; ?>" alt="<?php echo $optprice; ?>" id="opt_<?php echo $x; ?>-<?php echo $optid; ?>" style="width:auto;" <?php echo checkOption($optid,$x);  ?>/>&nbsp;<label for="opt_<?php echo $x; ?>-<?php echo $optid; ?>" title="<?php echo $optname; ?>" class="theopt-name"><?php echo $optname; ?></label><span class="opt-pr-cur"><label><?php echo $pr_mu; ?></label></span>
                                             <?php }
                                             else{ ?>
@@ -160,7 +160,7 @@
                                     ?>
                                         <div class="opt-item">
                                         
-                                        <?php if($opt['single_option']==0){ ?>
+                                        <?php if($theoptioncount==0){ ?>
                                              <input type="checkbox" rel="st-<?php echo $r['id'];?>" alt="<?php echo $optprice;?>" id="opt_1-<?php echo $optid;?>" <?php echo checkOption($optid,1); ?>/>
                                         <?php }else{ 
                                         ?>

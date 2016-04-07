@@ -34,9 +34,9 @@
 		$name = $adds[2];
 		$dishnum = $str[0];
 		$menu_option_id = $str[1];
-		
+		if($menu_option_id != 0 && $menu_option_id !=''){
 		mysql_query("insert into reservation_menu_option(reservation_unique_id, menu_option_id, menu_id, name, price, dish_num) values('".$uniq."', '".$menu_option_id."', '".$menu_id."', '".$name."', '".$price."', '".$dishnum."')") or die(mysql_error());
-		
+		}
 	}
 	if($_POST['check'] == 'check'){
 	function getOptionTotal($menu_id){
